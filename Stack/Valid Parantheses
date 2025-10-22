@@ -1,0 +1,39 @@
+import java.util.*;
+
+//Valid Parantheses//
+
+public class stackH{
+    public static void main(String[] args){
+        String str = "(){}[]";
+        System.out.println(isValid(str));
+    }
+    public static boolean isValid(String str){
+        Stack<Character> s = new Stack<>();
+        for(int i=0 ; i<str.length() ; i++){
+            char curr = str.charAt(i);
+            if(curr=='[' || curr=='(' || curr=='{' ){ //opening
+                s.push(curr);
+            }
+            else{
+                if(s.isEmpty()){
+                    return false;
+                }
+                else{
+                    if(curr==')' && s.peek()=='(' || curr=='}' && s.peek()=='{' || curr==']' && s.peek()=='[' ){
+                        s.pop();
+                    }
+                    else{
+                        return false;
+                    }
+                }
+            }
+
+        }
+        if(s.isEmpty()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+}
