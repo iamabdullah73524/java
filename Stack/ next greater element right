@@ -1,4 +1,4 @@
-//find next greater element
+// next greater element right
 import java.util.*;
 public class stackG {
     public static void main(String[] args) {
