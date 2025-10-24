@@ -1,0 +1,30 @@
+
+import java.util.*;
+//next smaller right
+
+public class StackJ{
+    public static void main(String[] args) {
+        int[] arr = {4,8,5,2,25};
+        int[] next = new int[arr.length];
+        nextSmaller(arr,next);
+        for(int i=0 ; i<arr.length ; i++){
+            System.out.print(next[i]+" ");
+        }
+    }
+    public static void nextSmaller(int[] arr , int[] next){
+    int n = arr.length;    
+    Stack<Integer> s = new Stack<>();
+    for(int i=n-1 ; i>=0; i--){
+    while(!s.isEmpty() && arr[i]<s.peek()){
+            s.pop();
+        }
+    if(s.isEmpty()){
+            next[i]=-1;
+    }else{
+            next[i]=s.peek();
+        }
+        s.push(arr[i]);
+
+    }
+    }
+}
