@@ -1,0 +1,29 @@
+import java.util.*;
+//next greater element left
+public class StackK{
+    public static void main(String[] args) {
+        int[] arr = {1,3,2,4};
+        int[] next = new int[arr.length];
+        nextgreaterLeft(arr, next);
+        for(int i=0 ; i<next.length ; i++){
+            System.out.print(next[i]+" ");
+        }
+
+    }
+    public static void nextgreaterLeft(int[] arr, int[] next){
+        Stack<Integer> s = new Stack<>();
+        int n= arr.length;
+        for(int i=0 ; i<n ; i++){
+            while(!s.empty() && arr[i]>s.peek()){
+                s.pop();
+            }
+            if(s.isEmpty()){
+                next[i]=-1;
+            }
+            else{
+                next[i]=s.peek();
+            }
+            s.push(arr[i]);
+        }
+    }
+}
