@@ -1,0 +1,56 @@
+import java.util.*;
+public class stackM{
+    //Find Max area of BarGraph
+    public static void main(String[] args) {
+        int[] height = {2,1,5,6,2,3};
+        maxarea(height);
+
+    }
+    public static void maxarea(int[] height){
+        int[] nsr = new int[height.length];
+        int[] nsl= new int[height.length];
+        int n = height.length;
+        Stack<Integer> s = new Stack<>();
+        //find next smaller right (j)
+        for(int i=n-1 ; i>=0 ; i--){
+            while(!s.isEmpty() && height[i]<=height[s.peek()]){
+                s.pop();
+            }
+            if(s.isEmpty()){
+                nsr[i]=n;
+            }
+            else{
+                nsr[i] =s.peek(); 
+            }
+            s.push(i);
+        }
+       
+        //find next smaller left (i)
+        s.clear();
+        for(int i=0 ; i<n ; i++){
+            while(!s.isEmpty() && height[i]<height[s.peek()]){
+                s.pop();
+            }
+            if(s.isEmpty()){
+                nsl[i]=-1;
+            }else{
+                nsl[i]=s.peek();
+            }
+            s.push(i);
+        }
+
+        //find max area
+        int maxarea=0;
+       for(int i=0 ; i<n ; i++){
+            int width = nsr[i]-nsl[i]-1; // width = j-i-1 
+            int area =height[i]*width; //area = height*width
+            System.out.print(+area+" ");
+
+            maxarea= Math.max(area,maxarea); //update max area
+            
+       }
+       System.out.println();
+       System.out.println("max area is : "+maxarea);
+
+    }
+}
