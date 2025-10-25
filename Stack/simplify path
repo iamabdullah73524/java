@@ -1,0 +1,35 @@
+import java.util.*;
+//simplify path
+
+public class stackN{
+    public static void main(String[] args) {
+        String str = "/home//fool/";
+        System.out.println(simplifypath(str));
+    }
+    public static String simplifypath(String str){
+        String[] arr = str.split("/");
+        Stack<String> s = new Stack<>();
+
+        for(String i : arr){
+            if(!s.isEmpty() && i.equals("..")){
+                s.pop();
+            }
+            else if(!i.equals("")&& !i.equals(".")&& !i.equals("..")){
+                s.push(i);
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for(String i : s){
+            sb.append("/");
+            sb.append(i);
+        }
+
+        if(sb.isEmpty()){
+            return "/";
+        }
+        else{
+            return sb.toString();
+        }
+    }
+}
